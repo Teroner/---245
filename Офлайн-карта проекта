@@ -1,0 +1,175 @@
+// Размеры изображения карты (замените на реальные размеры вашей карты)
+var imageWidth = 1280;
+var imageHeight = 960;
+
+// Географические границы Тамбовской области
+var minLongitude = 40.0;
+var maxLongitude = 43.0;
+var minLatitude = 51.5;
+var maxLatitude = 53.5;
+
+// Функции для преобразования географических координат в пиксельные
+function longitudeToX(lon) {
+    return ((lon - minLongitude) / (maxLongitude - minLongitude)) * imageWidth;
+}
+
+function latitudeToY(lat) {
+    return imageHeight - (((lat - minLatitude) / (maxLatitude - minLatitude)) * imageHeight);
+}
+
+// Инициализация карты
+var map = L.map('map', {
+    crs: L.CRS.Simple,
+    minZoom: -1,
+    maxZoom: 4
+});
+
+// ... остальной код без изменений ...
+
+// При создании маркеров:
+for (var i = 0; i < repressedData.length; i++) {
+    var person = repressedData[i];
+    
+    // Используем координаты из словаря
+    if (placeCoords[person.servicePlace]) {
+        var x = longitudeToX(placeCoords[person.servicePlace].longitude);
+        var y = latitudeToY(placeCoords[person.servicePlace].latitude);
+        var marker = L.marker([y, x]).addTo(map);
+        
+        // ... остальной код создания маркера ...
+    }
+}
+// Словарь координат населённых пунктов
+var placeCoords = {
+    "г. Кирсанов": {latitude: 52.65494, longitude: 42.72236},
+    "г. Котовск": {latitude: 52.58666, longitude: 41.50210},
+    "г. Мичуринск": {latitude: 52.89780, longitude: 40.49070},
+    "г. Моршанск": {latitude: 53.44354, longitude: 41.81065},
+    "г. Рассказово": {latitude: 52.65584, longitude: 41.88444},
+    "г. Тамбов": {latitude: 52.72177, longitude: 41.45590},
+    "г. Уварово": {latitude: 51.98486, longitude: 42.26147},
+    "с. Бондари": {latitude: 52.95218, longitude: 42.05564},
+    "с. Гавриловка 2-я": {latitude: 52.71670, longitude: 42.55000},
+    "г. Жердевка": {latitude: 51.83330, longitude: 41.46670},
+    "пгт. Знаменка": {latitude: 52.91670, longitude: 41.43330},
+    "пгт. Инжавино": {latitude: 52.31670, longitude: 42.50000},
+    "пгт. Мордово": {latitude: 52.06670, longitude: 42.30000},
+    "пгт. Мучкапский": {latitude: 51.85000, longitude: 42.05000},
+    "с. Дмитриевка": {latitude: 52.50000, longitude: 41.75000}
+};
+
+var repressedData = [
+    {
+        name: "Абашин Феодор Спиридонович",
+        status: "мирянин",
+        arrestDate: "14.08.1937",
+        article: "58-10",
+        sentence: "расстрел",
+        servicePlace: "г. Тамбов"
+    },
+    {
+        name: "Абызов Василий Иоаннович",
+        status: "мирянин",
+        arrestDate: "1937",
+        article: "58-10",
+        sentence: "10 л. ИТЛ",
+        servicePlace: "г. Моршанск"
+    },
+    {
+        name: "Абызова Анастасия Яковлевна",
+        status: "монахиня",
+        arrestDate: "05.09.1937",
+        article: "58",
+        sentence: "8 л. ИТЛ",
+        servicePlace: "г. Тамбов"
+    },
+    {
+        name: "Абызова Анна Фёдоровна",
+        status: "монахиня",
+        arrestDate: "05.09.1937",
+        article: "58",
+        sentence: "8 л. ИТЛ",
+        servicePlace: "г. Тамбов"
+    },
+    {
+        name: "Боголюбов Константин Петрович",
+        status: "псаломщик",
+        arrestDate: "1938",
+        article: "58-12",
+        sentence: "5 л. ИТЛ",
+        servicePlace: "с. Бондари"
+    },
+    {
+        name: "Владыкин Владимир Александрович",
+        status: "свящ",
+        arrestDate: "1937",
+        article: "58-10",
+        sentence: "расстрел",
+        servicePlace: "г. Моршанск"
+    },
+    {
+        name: "Иванов Иван Иванович",
+        status: "священник",
+        arrestDate: "01.08.1937",
+        article: "58-10",
+        sentence: "ВМН",
+        servicePlace: "г. Тамбов"
+    },
+    {
+        name: "Петров Петр Петрович",
+        status: "мирянин",
+        arrestDate: "15.09.1937",
+        article: "58-11",
+        sentence: "ИТЛ",
+        servicePlace: "г. Тамбов"
+    },
+    {
+        name: "Сидоров Сергей Сергеевич",
+        status: "священник",
+        arrestDate: "20.10.1937",
+        article: "58-10",
+        sentence: "ВМН",
+        servicePlace: "с. Ковылка"
+    }
+    // Добавьте остальные записи по аналогии
+];
+// Полный список координат населённых пунктов
+var placeCoords = {
+    "г. Кирсанов": {latitude: 52.65494, longitude: 42.72236},
+    "г. Котовск": {latitude: 52.58666, longitude: 41.50210},
+    "г. Мичуринск": {latitude: 52.89780, longitude: 40.49070},
+    "г. Моршанск": {latitude: 53.44354, longitude: 41.81065},
+    "г. Рассказово": {latitude: 52.65584, longitude: 41.88444},
+    "г. Тамбов": {latitude: 52.72177, longitude: 41.45590},
+    "г. Уварово": {latitude: 51.98486, longitude: 42.26147},
+    "с. Бондари": {latitude: 52.95218, longitude: 42.05564},
+    "с. Гавриловка 2-я": {latitude: 52.71670, longitude: 42.55000},
+    "г. Жердевка": {latitude: 51.83330, longitude: 41.46670},
+    "пгт. Знаменка": {latitude: 52.91670, longitude: 41.43330},
+    "пгт. Инжавино": {latitude: 52.31670, longitude: 42.50000},
+    "пгт. Мордово": {latitude: 52.06670, longitude: 42.30000},
+    "пгт. Мучкапский": {latitude: 51.85000, longitude: 42.05000},
+    "с. Дмитриевка": {latitude: 52.50000, longitude: 41.75000}
+};
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <!-- ... остальные теги ... -->
+  <!-- Добавляем новый файл координат -->
+  <script src="place-coords.js"></script>
+</head>
+<body>
+  <!-- ... тело документа ... -->
+</body>
+</html>
+var imageWidth = 1500;
+var imageHeight = 1200;
+{
+    name: "Полное ФИО",
+    status: "церковный статус",
+    arrestDate: "дата в формате ДД.ММ.ГГГГ",
+    article: "статья обвинения",
+    sentence: "приговор",
+    servicePlace: "точное название населённого пункта"
+}
+"Название населённого пункта": {latitude: XX.XXXXX, longitude: YY.YYYYY},
